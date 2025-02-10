@@ -148,4 +148,65 @@
         padding: 8px 0;
         display: block;
     }
+}
+
+/* Hamburger Menü Butonu */
+.menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle i {
+    font-size: 20px;
+}
+
+.menu-toggle:hover {
+    background-color: #f0f0f0;
+}
+
+/* Mobil düzenlemeler */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-links {
+        display: none;
+        margin-top: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .brand {
+        margin-bottom: 0;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .nav-footer {
+        margin-top: 20px;
+        padding-top: 15px;
+    }
 } 
