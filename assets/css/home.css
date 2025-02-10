@@ -305,4 +305,25 @@
     .car-card {
         flex: 0 0 100%; /* 1 kart */
     }
+}
+
+@media screen and (max-width: 768px) {
+    .car-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .car-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .car-header h3 {
+        margin-bottom: 10px;
+    }
+
+    .price {
+        margin-top: 10px;
+    }
 } 

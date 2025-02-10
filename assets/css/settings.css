@@ -69,9 +69,27 @@
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7C7C8D;
+    z-index: 1;
+}
+
+.form-group select,
+.form-group input {
+    padding-left: 35px; /* Simge için sol padding */
+    width: 100%;
+    height: 40px;
+    border: 1px solid #E6E8EC;
+    border-radius: 8px;
+    background-color: #fff;
 }
 
 .form-group.full-width {
@@ -300,4 +318,18 @@ input[type="checkbox"] {
 .strength-bar.strong::before {
     width: 100%;
     background: #4CAF50;
+}
+
+/* Mobil için düzenlemeler */
+@media screen and (max-width: 768px) {
+    .form-group i {
+        top: 12px;
+        transform: none;
+    }
+    
+    .form-group select,
+    .form-group input {
+        padding-left: 35px;
+        height: 45px; /* Mobilde dokunma alanını artır */
+    }
 } 

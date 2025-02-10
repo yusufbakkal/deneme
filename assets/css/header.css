@@ -208,4 +208,25 @@
     .header-actions {
         gap: 20px;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .header-right {
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .user-actions {
+        justify-content: center;
+        width: 100%;
+    }
 } 
