@@ -1,59 +1,27 @@
 <header class="header">
     <div class="header-container">
-        <!-- Hamburger Menü Butonu -->
-        <button class="hamburger-menu" id="hamburgerBtn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <!-- Logo (mobilde görünür) -->
+        <div class="mobile-logo">
+            <img src="assets/images/logo.png" alt="TAKKAS" class="logo-icon">
+        </div>
 
-        <!-- Logo -->
-        <div class="brand">
-            <a href="/" class="logo">
-                <img src="assets/images/logo.png" alt="TAKKAS Logo" class="logo-icon">
-                <span class="logo-text">TAKKAS</span>
+        <!-- Arama Çubuğu -->
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Ara...">
+        </div>
+
+        <!-- Sağ Taraftaki İkonlar -->
+        <div class="header-actions">
+            <div class="notification-wrapper">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <a href="/profile.html" class="profile-link">
+                <img src="assets/images/profile.jpg" alt="Profil" class="profile-img">
             </a>
-        </div>
-
-        <!-- Mobil Menü -->
-        <div class="mobile-menu" id="mobileMenu">
-            <nav class="nav-links">
-                <a href="/" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>Ana Sayfa</span>
-                </a>
-                <a href="/matches.html" class="nav-link">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span>Eşleşmeler</span>
-                </a>
-                <a href="/messages.html" class="nav-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Mesajlar</span>
-                </a>
-                <a href="/settings.html" class="nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Ayarlar</span>
-                </a>
-            </nav>
-        </div>
-
-        <!-- Sağ Taraf -->
-        <div class="header-right">
-            <div class="search-bar">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Ara...">
-            </div>
-            <div class="header-actions">
-                <div class="notification-wrapper">
-                    <button class="notification-btn">
-                        <i class="far fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                </div>
-                <a href="/profile.html">
-                    <img src="assets/images/profile.jpg" alt="Profil" class="profile-img">
-                </a>
-            </div>
         </div>
     </div>
 </header>
