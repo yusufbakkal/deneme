@@ -1,28 +1,20 @@
 <header class="header">
     <div class="header-container">
-        <!-- Logo (mobilde görünür) -->
-        <div class="mobile-logo">
-            <img src="assets/images/logo.png" alt="TAKKAS" class="logo-icon">
-        </div>
-
-        <!-- Arama Çubuğu -->
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="Ara...">
+            <input type="text" 
+                   aria-label="Arama yap" 
+                   placeholder="Kelime veya ilan no ile ara"
+                   class="search-input">
         </div>
-
-        <!-- Sağ Taraftaki İkonlar -->
+        
         <div class="header-actions">
-            <div class="notification-wrapper">
-                <button class="notification-btn">
-                    <i class="far fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
-            </div>
-            <a href="/profile.html" class="profile-link">
-                <img src="assets/images/profile.jpg" alt="Profil" class="profile-img">
+            <button class="notification-btn" aria-label="Bildirimleri göster">
+                <i class="fas fa-bell"></i>
+            </button>
+            <a href="settings.html">
+                <img src="assets/images/avatar.png" alt="Profile" class="profile-img">
             </a>
         </div>
     </div>
-</header>
-<script src="assets/js/header.js"></script> 
+</header> 

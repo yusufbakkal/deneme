@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationBtn = document.getElementById('notificationBtn');
     const notificationDropdown = document.getElementById('notificationDropdown');
     const markAllReadBtn = document.querySelector('.mark-all-read');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
 
     // Bildirim menüsünü aç/kapa
     notificationBtn.addEventListener('click', function(e) {
@@ -47,67 +45,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    hamburgerBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-
-    // Sayfa dışına tıklandığında menüyü kapat
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.hamburger-menu') && 
-            !event.target.closest('.mobile-menu')) {
-            hamburgerBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        }
-    });
-
-    // Menü linklerine tıklandığında menüyü kapat
-    const menuLinks = document.querySelectorAll('.mobile-menu .nav-link');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburgerBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        });
-    });
-
-    // Hamburger menü işlevselliği
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            // Menü ikonunu değiştir
-            const icon = this.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Sayfa dışına tıklandığında menüyü kapat
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.sidebar')) {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Link tıklandığında menüyü kapat
-        const navLinksAll = navLinks.querySelectorAll('a');
-        navLinksAll.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-    }
 }); 
