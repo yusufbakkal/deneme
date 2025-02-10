@@ -203,6 +203,7 @@
     <div id="footer-component"></div>
 
     <!-- JavaScript -->
+    <script src="assets/js/header.js"></script>
     <script>
         // Bileşenleri yükle
         Promise.all([
@@ -216,7 +217,11 @@
             
             // Slider'ı başlat
             initSlider();
+        }).catch(error => {
+            console.error('Bileşenler yüklenirken hata oluştu:', error);
         });
     </script>
+    <script src="assets/js/slider.js" defer></script>
+    <script src="assets/js/home.js"></script>
 </body>
 </html> 
