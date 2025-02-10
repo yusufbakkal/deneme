@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabalar - Araba Takas</title>
+    
+    <!-- CSS Bağlantıları -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/cars.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Bileşeni -->
+    <div id="header-component"></div>
+
+    <!-- Navbar Bileşeni -->
+    <div id="navbar-component"></div>
+
+    <!-- Ana İçerik -->
+    <main>
+        <div class="car-grid" id="carGrid">
+            <!-- Araba kartları dinamik olarak buraya eklenecek -->
+        </div>
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+        </div>
+    </main>
+
+    <!-- Footer Bileşeni -->
+    <div id="footer-component"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Bileşenleri yükle
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-component').innerHTML = data;
+            });
+
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-component').innerHTML = data;
+            });
+
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-component').innerHTML = data;
+            });
+
+        // Değişkenler
+        let page = 1;
+        const cardsPerPage = 8;
+        let loading = false;
+
+        // Simüle edilmiş API çağrısı - Gerçek uygulamada bu fonksiyon API'den veri çekecek
+        async function fetchCars(pageNumber) {
+            // API simülasyonu
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Her seferinde yeni arabalar oluştur
+                    const cars = Array(8).fill().map((_, index) => ({
+                        id: (pageNumber - 1) * 8 + index + 1,
+                        name: ['Porshe 718 Cayman S', 'BMW M4 Competition', 'Mercedes-AMG GT', 'Audi RS7', 'Tesla Model S', 'Lamborghini Huracan', 'Ferrari F8', 'McLaren 720S'][index % 8],
+                        type: ['Coupe', 'Sedan', 'Sports Car', 'Sportback', 'Electric', 'Supercar'][index % 6],
+                        image: `https://picsum.photos/seed/${(pageNumber - 1) * 8 + index}/400/250`,
+                        passengers: 2 + (index % 3),
+                        transmission: ['Manual', 'Automatic', 'DCT'][index % 3],
+                        price: 400 + ((pageNumber - 1) * 8 + index) * 50
+                    }));
+                    resolve(cars);
+                }, 500);
+            });
+        }
+
+        // Araba kartı HTML'i oluştur
+        function createCarCard(car) {
+            return `
+                <article class="car-card">
+                    <div class="car-content">
+                        <header class="car-header">
+                            <div class="car-title-row">
+                                <h2 class="car-name">${car.name}</h2>
+                                <button class="car-favorite" aria-label="Favorilere ekle">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <p class="car-type">${car.type}</p>
+                        </header>
+                        <img src="${car.image}" alt="${car.name}" class="car-image">
+                        <footer class="car-details">
+                            <div class="car-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-cog spec-icon"></i>
+                                    <span>${car.transmission}</span>
+                                </div>
+                            </div>
+                            <p class="car-price">
+                                <span class="price-amount">${car.price.toLocaleString()} TL</span>
+                            </p>
+                        </footer>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Arabaları yükle
+        async function loadCars() {
+            if (loading) return;
+            loading = true;
+
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.classList.add('active');
+
+            try {
+                // API'den yeni arabaları getir
+                const newCars = await fetchCars(page);
+
+                const carGrid = document.getElementById('carGrid');
+                
+                // Her 4 araba için yeni bir satır oluştur
+                for (let i = 0; i < newCars.length; i += 4) {
+                    const rowCars = newCars.slice(i, i + 4);
+                    const carRow = document.createElement('div');
+                    carRow.className = 'car-row';
+                    
+                    // Satırı 4 arabaya tamamla
+                    const carsToAdd = rowCars.length;
+                    rowCars.forEach(car => {
+                        carRow.innerHTML += createCarCard(car);
+                    });
+                    
+                    // Eksik kartları boş div ile doldur
+                    for (let j = carsToAdd; j < 4; j++) {
+                        carRow.innerHTML += '<div class="car-card" style="visibility: hidden;"></div>';
+                    }
+
+                    carGrid.appendChild(carRow);
+                }
+
+                page++;
+            } catch (error) {
+                console.error('Arabalar yüklenirken hata oluştu:', error);
+            } finally {
+                loading = false;
+                spinner.classList.remove('active');
+            }
+        }
+
+        // Scroll olayını dinle
+        function handleScroll() {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            
+            // Sayfanın sonuna yaklaşıldığında yeni arabaları yükle
+            if (!loading && (scrollHeight - scrollTop - clientHeight) < 300) {
+                loadCars();
+            }
+        }
+
+        // Sayfa yüklendiğinde ilk arabaları yükle
+        document.addEventListener('DOMContentLoaded', loadCars);
+        
+        // Scroll event listener'ı throttle ile optimize et
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Favoriye ekleme fonksiyonu
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.car-favorite')) {
+                const button = e.target.closest('.car-favorite');
+                button.classList.toggle('active');
+                const icon = button.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+            }
+        });
+    </script>
+</body>
+</html> 
