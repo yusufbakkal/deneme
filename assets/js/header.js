@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationBtn = document.getElementById('notificationBtn');
     const notificationDropdown = document.getElementById('notificationDropdown');
     const markAllReadBtn = document.querySelector('.mark-all-read');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
     // Bildirim menüsünü aç/kapa
     notificationBtn.addEventListener('click', function(e) {
@@ -43,6 +45,29 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 badge.textContent = unreadCount;
             }
+        });
+    });
+
+    hamburgerBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Sayfa dışına tıklandığında menüyü kapat
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.hamburger-menu') && 
+            !event.target.closest('.mobile-menu')) {
+            hamburgerBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // Menü linklerine tıklandığında menüyü kapat
+    const menuLinks = document.querySelectorAll('.mobile-menu .nav-link');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
         });
     });
 }); 

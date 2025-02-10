@@ -1,20 +1,60 @@
 <header class="header">
     <div class="header-container">
-        <div class="search-bar">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" 
-                   aria-label="Arama yap" 
-                   placeholder="Kelime veya ilan no ile ara"
-                   class="search-input">
-        </div>
-        
-        <div class="header-actions">
-            <button class="notification-btn" aria-label="Bildirimleri göster">
-                <i class="fas fa-bell"></i>
-            </button>
-            <a href="settings.html">
-                <img src="assets/images/avatar.png" alt="Profile" class="profile-img">
+        <!-- Hamburger Menü Butonu -->
+        <button class="hamburger-menu" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Logo -->
+        <div class="brand">
+            <a href="/" class="logo">
+                <img src="assets/images/logo.png" alt="TAKKAS Logo" class="logo-icon">
+                <span class="logo-text">TAKKAS</span>
             </a>
         </div>
+
+        <!-- Mobil Menü -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="nav-links">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+                <a href="/matches.html" class="nav-link">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Eşleşmeler</span>
+                </a>
+                <a href="/messages.html" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Mesajlar</span>
+                </a>
+                <a href="/settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Ayarlar</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Sağ Taraf -->
+        <div class="header-right">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Ara...">
+            </div>
+            <div class="header-actions">
+                <div class="notification-wrapper">
+                    <button class="notification-btn">
+                        <i class="far fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <a href="/profile.html">
+                    <img src="assets/images/profile.jpg" alt="Profil" class="profile-img">
+                </a>
+            </div>
+        </div>
     </div>
-</header> 
+</header>
+<script src="assets/js/header.js"></script> 
